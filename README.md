@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🚀 Sistema de Agendamento de Reuniões (Frontend)
+Descrição breve do projeto:
+Este é o frontend de um sistema para agendamento de reuniões, desenvolvido com Next.js. Ele permite que os usuários agendem, visualizem e gerenciem reuniões de forma eficiente.
 
-## Getting Started
+🛠️ Tecnologias Utilizadas
+Next.js: Framework React para renderização do lado do servidor (SSR) e geração de páginas estáticas.
 
-Sakai is an application template for Next.js based on the popular Next.js framework with new App Router. 
+PrimeReact: Biblioteca de componentes UI para criar interfaces modernas e responsivas.
 
-First, run the development server:
+React Hooks: Para gerenciamento de estado e efeitos colaterais.
 
-```bash
+Axios: Para fazer requisições HTTP à API do backend.
+
+Toast: Para exibir notificações de sucesso e erro.
+
+🚀 Como Executar o Projeto
+Pré-requisitos
+Node.js (v18 ou superior)
+
+npm ou yarn
+
+Git
+
+Passos para Configuração
+Clone o repositório:
+
+bash
+Copy
+git clone https://github.com/KorujaSedex123/front-sistema.git
+Instale as dependências:
+
+bash
+Copy
+npm install
+Inicie o servidor de desenvolvimento:
+
+bash
+Copy
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Acesse o frontend:
+Abra o navegador e acesse:
+http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🧩 Estrutura do Projeto
+Copy
+frontend/
+├── public/             # Arquivos estáticos (imagens, fonts, etc.)
+├── src/
+│   ├── app/            # Páginas e componentes principais
+│   ├── demo/           # Exemplos ou demonstrações
+│   ├── layout/         # Componentes de layout (cabeçalho, rodapé, etc.)
+│   ├── service/        # Serviços para chamadas à API
+│   ├── styles/         # Estilos globais e módulos CSS
+│   ├── types/          # Tipos TypeScript (se aplicável)
+│   └── utils/          # Utilitários e helpers
+├── .env.local          # Variáveis de ambiente locais
+├── .eslintrc.json      # Configurações do ESLint
+├── .gitignore          # Arquivos ignorados pelo Git
+├── next.config.js      # Configurações do Next.js
+├── package.json        # Dependências e scripts do projeto
+├── README.md           # Documentação do projeto
+└── tsconfig.json       # Configurações do TypeScript
+🌐 Rotas do Frontend
+/: Página inicial.
 
-## Integration with Existing Next.js Applications
+/auth/login: Página de login.
 
-Only the folders related to the layout need to be moved into your project. Integration of pages involves moving the files under those folders. Make sure that the using page is defined under the related group layout.
+/auth/newuser: Página de cadastro de novo usuário.
 
-## Learn More
+/dashboard: Área protegida para agendar e gerenciar reuniões.
 
-To learn more about Next.js, take a look at the following resources:
+📝 Licença
+Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE.md para mais detalhes.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📧 Contato
+Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Nome: Bruno Luís da Fontoura Grzegork
 
-## Deploy on Vercel
+Email: brunogrzegork@gmail.com
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+GitHub: KorujaSedex123
