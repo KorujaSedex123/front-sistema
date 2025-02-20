@@ -1,19 +1,19 @@
-🚀 Sistema de Agendamento de Reuniões (Frontend)
-Descrição breve do projeto:
+#🚀 Sistema de Agendamento de Reuniões (Frontend)#
+##Descrição breve do projeto:##
 Este é o frontend de um sistema para agendamento de reuniões, desenvolvido com Next.js. Ele permite que os usuários agendem, visualizem e gerenciem reuniões de forma eficiente.
 
-🛠️ Tecnologias Utilizadas
+#🛠️ Tecnologias Utilizadas#
 Next.js: Framework React para renderização do lado do servidor (SSR) e geração de páginas estáticas.
 
-PrimeReact: Biblioteca de componentes UI para criar interfaces modernas e responsivas.
+##PrimeReact:## Biblioteca de componentes UI para criar interfaces modernas e responsivas.
 
-React Hooks: Para gerenciamento de estado e efeitos colaterais.
+##React Hooks:## Para gerenciamento de estado e efeitos colaterais.
 
-Axios: Para fazer requisições HTTP à API do backend.
+##Axios:## Para fazer requisições HTTP à API do backend.
 
-Toast: Para exibir notificações de sucesso e erro.
+##Toast:## Para exibir notificações de sucesso e erro.
 
-🚀 Como Executar o Projeto
+#🚀 Como Executar o Projeto#
 Pré-requisitos
 Node.js (v18 ou superior)
 
@@ -26,7 +26,8 @@ Clone o repositório:
 
 bash
 Copy
-git clone https://github.com/KorujaSedex123/front-sistema.git
+git clone https://github.com/seu-usuario/nome-do-repositorio.git
+cd nome-do-repositorio/frontend
 Instale as dependências:
 
 bash
@@ -41,7 +42,9 @@ Acesse o frontend:
 Abra o navegador e acesse:
 http://localhost:3000.
 
-🧩 Estrutura do Projeto
+#🧩 Estrutura do Projeto#
+Aqui está a estrutura principal do projeto:
+
 Copy
 frontend/
 ├── public/             # Arquivos estáticos (imagens, fonts, etc.)
@@ -60,7 +63,7 @@ frontend/
 ├── package.json        # Dependências e scripts do projeto
 ├── README.md           # Documentação do projeto
 └── tsconfig.json       # Configurações do TypeScript
-🌐 Rotas do Frontend
+#🌐 Rotas do Frontend#
 /: Página inicial.
 
 /auth/login: Página de login.
@@ -69,14 +72,5 @@ frontend/
 
 /dashboard: Área protegida para agendar e gerenciar reuniões.
 
-📝 Licença
+#📝 Licença#
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE.md para mais detalhes.
-
-📧 Contato
-Se você tiver alguma dúvida ou sugestão, sinta-se à vontade para entrar em contato:
-
-Nome: Bruno Luís da Fontoura Grzegork
-
-Email: brunogrzegork@gmail.com
-
-GitHub: KorujaSedex123
