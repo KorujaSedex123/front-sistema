@@ -63,7 +63,7 @@ const NewUserPage = () => {
         <div className={containerClassName}>
             <Toast ref={toast} />
             <div className="flex flex-column align-items-center justify-content-center">
-                <img src={`/layout/images/logo-${layoutConfig.colorScheme === 'light' ? 'dark' : 'white'}.svg`} alt="Sakai logo" className="mb-5 w-6rem flex-shrink-0" />
+                <img src={`/layout/images/logo.svg`} alt="Sakai logo" className="mb-5 w-6rem flex-shrink-0" />
                 <div
                     style={{
                         borderRadius: '56px',

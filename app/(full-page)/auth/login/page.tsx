@@ -34,7 +34,8 @@ const LoginPage = () => {
 
             localStorage.setItem('TOKEN_APLICACAO_FRONTEND', response.data.token);
 
-            router.push('http://localhost:3000/');
+            router.replace('/');
+            //window.location.reload();
         }).catch(() => {
             
             toast.current?.show({
@@ -52,7 +53,7 @@ const LoginPage = () => {
         <div className={containerClassName}>
             <Toast ref={toast} />
             <div className="flex flex-column align-items-center justify-content-center">
-                <img src={`/layout/images/logo-${layoutConfig.colorScheme === 'light' ? 'dark' : 'white'}.svg`} alt="Sakai logo" className="mb-5 w-6rem flex-shrink-0" />
+                <img src={`/layout/images/logo.svg`} alt="korion logo" className="w-10rem flex-shrink-0" />
                 <div
                     style={{
                         borderRadius: '56px',
@@ -78,10 +79,10 @@ const LoginPage = () => {
 
                             <div className="flex align-items-center justify-content-between mb-5 gap-5">                            
                                 <a className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'var(--primary-color)' }} onClick={() => router.push('/auth/newuser')}>
-                                    Sou novo por aqui!
+                                    Cadastrar-se
                                 </a>
                                 <a className="font-medium no-underline ml-2 text-right cursor-pointer" style={{ color: 'var(--primary-color)' }}>
-                                    Forgot password?
+                                    Esqueceu a senha?
                                 </a>
                             </div>
                             <Button label="Entrar" className="w-full p-3 text-xl" onClick={() => efetuarLogin()}></Button>

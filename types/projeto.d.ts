@@ -29,4 +29,10 @@ declare namespace Projeto {
         perfil: Perfil;
         recurso: Recurso;
     }
+
+    type Reuniao = {
+        id?: number;
+        data: string;
+        descricao: string;
+    }
 }
