@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import AppConfig from '../../layout/AppConfig';
 import React from 'react';
+import { AuthProvider } from './auth/context/AuthContext';
 
 interface SimpleLayoutProps {
     children: React.ReactNode;
@@ -14,8 +15,10 @@ export const metadata: Metadata = {
 export default function SimpleLayout({ children }: SimpleLayoutProps) {
     return (
         <React.Fragment>
-            {children}
-            <AppConfig simple />
+            <AuthProvider> {/* Envolva os children com AuthProvider */}
+                {children}
+                <AppConfig simple />
+            </AuthProvider>
         </React.Fragment>
     );
 }

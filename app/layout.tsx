@@ -14,29 +14,19 @@ interface RootLayoutProps {
     children: React.ReactNode;
 }
 
-const checkAuth = () => {
-
-    if (localStorage.getItem('TOKEN_APLICACAO_FRONTEND') != undefined) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 export default function RootLayout({ children }: RootLayoutProps) {
-
     const [pageLoaded, setPageLoaded] = useState(false);
     const [autenticado, setAutenticado] = useState(false);
     const pathname = usePathname();
 
     useEffect(() => {
-        if(pathname.startsWith('/pages') || pathname == '/'){
-            setAutenticado(checkAuth());
-            setPageLoaded(true);
-        }else{
-            setAutenticado(true);
-            setPageLoaded(true);
+        console.log('teste')
+        if (typeof window !== 'undefined') { // Verifica se está no lado do cliente
+            const token = localStorage.getItem('TOKEN_APLICACAO_FRONTEND');
+            setAutenticado(!!token); // Atualiza o estado de autenticação
+            setPageLoaded(true); // Marca a página como carregada
         }
+       
     }, [pathname]);
 
     return (

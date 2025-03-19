@@ -34,5 +34,6 @@ declare namespace Projeto {
         id?: number;
         data: string;
         descricao: string;
+        dataReuniao?: Date;	
     }
 }

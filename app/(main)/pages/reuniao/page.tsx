@@ -12,6 +12,7 @@ import { classNames } from 'primereact/utils';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Projeto } from '../../../../types/types';
 import { ReuniaoService } from '../../../../service/ReuniaoService';
+import moment from 'moment';
 
 const Reuniao = () => {
     let reuniaoVazio: Projeto.Reuniao = {
@@ -78,11 +79,10 @@ const Reuniao = () => {
                         detail: 'Reunião marcada com sucesso!'
                     });
                 }).catch((error) => {
-                    console.log(error.data.message);
                     toast.current?.show({
                         severity: 'error',
                         summary: 'Erro!',
-                        detail: 'Erro ao salvar!' + error.data.message
+                        detail: 'Erro ao salvar!' 
                     })
                 });
         } else {
@@ -97,11 +97,10 @@ const Reuniao = () => {
                         detail: 'Reunião alterada com sucesso!'
                     });
                 }).catch((error) => {
-                    console.log(error.data.message);
                     toast.current?.show({
                         severity: 'error',
                         summary: 'Erro!',
-                        detail: 'Erro ao alterar!' + error.data.message
+                        detail: 'Erro ao alterar!' 
                     })
                 })
         }
@@ -224,10 +223,12 @@ const Reuniao = () => {
     };
 
     const dateBodyTemplate = (rowData: Projeto.Reuniao) => {
+        const dataFormatada = moment(rowData.dataReuniao).format('DD/MM/YYYY HH:mm');
+    
         return (
             <>
                 <span className="p-column-title">Data da Reunião</span>
-                {rowData.data}
+                {dataFormatada}
             </>
         );
     };
@@ -235,7 +236,6 @@ const Reuniao = () => {
     const actionBodyTemplate = (rowData: Projeto.Reuniao) => {
         return (
             <>
-                <Button icon="pi pi-pencil" rounded severity="success" className="mr-2" onClick={() => editReuniao(rowData)} />
                 <Button icon="pi pi-trash" rounded severity="warning" onClick={() => confirmDeleteReuniao(rowData)} />
             </>
         );
@@ -243,7 +243,7 @@ const Reuniao = () => {
 
     const header = (
         <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-            <h5 className="m-0">Gerenciamento de Reuniões</h5>
+            <h5 className="m-0">Gerenciamento da Reunião</h5>
             <span className="block mt-2 md:mt-0 p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.currentTarget.value)} placeholder="Search..." />
@@ -326,7 +326,7 @@ const Reuniao = () => {
                                 onChange={(e) => onInputChange(e, 'data')}
                                 required
                                 autoFocus
-                                type='date'
+                                type='datetime-local'
                                 className={classNames({
                                     'p-invalid': submitted && !reuniao.data
                                 })}

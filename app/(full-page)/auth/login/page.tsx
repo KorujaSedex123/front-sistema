@@ -2,7 +2,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import React, { useContext, useMemo, useRef, useState } from 'react';
-import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
 import { LayoutContext } from '../../../../layout/context/layoutcontext';
@@ -10,34 +9,34 @@ import { InputText } from 'primereact/inputtext';
 import { classNames } from 'primereact/utils';
 import { LoginService } from '../../../../service/LoginService';
 import { Toast } from 'primereact/toast';
-import Link from 'next/link';
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
-    
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const [checked, setChecked] = useState(false);
     const { layoutConfig } = useContext(LayoutContext);
-
     const router = useRouter();
     const containerClassName = classNames('surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden', { 'p-input-filled': layoutConfig.inputStyle === 'filled' });
 
     const loginService = useMemo(() => new LoginService(), []);
-
     const toast = useRef<Toast>(null);
+    const { setAuthenticated } = useAuth();
 
     const efetuarLogin = () => {
+        setLoading(true);
+
         loginService.login(login, senha).then((response) => {            
-            console.log("Sucesso");
-            console.log(response.data.token);
-
-            localStorage.setItem('TOKEN_APLICACAO_FRONTEND', response.data.token);
-
-            router.replace('/');
-            //window.location.reload();
+            const token = response.data.token;
+            if (token) {
+                localStorage.setItem('TOKEN_APLICACAO_FRONTEND', token);
+                setAuthenticated(true); // Atualiza o estado de autenticação
+                window.location.href = '/';
+            } else {
+                throw new Error("Token não recebido");
+            }
         }).catch(() => {
-            
             toast.current?.show({
                 severity: 'error',
                 summary: 'Erro!',
@@ -46,6 +45,8 @@ const LoginPage = () => {
 
             setLogin('');
             setSenha('');
+        }).finally(() => {
+            setLoading(false);
         });
     }
 
@@ -85,8 +86,12 @@ const LoginPage = () => {
                                     Esqueceu a senha?
                                 </a>
                             </div>
-                            <Button label="Entrar" className="w-full p-3 text-xl" onClick={() => efetuarLogin()}></Button>
-                           
+                            <Button 
+                                label={loading ? 'Carregando...' : 'Entrar'} 
+                                className="w-full p-3 text-xl" 
+                                onClick={efetuarLogin}
+                                disabled={loading}
+                            ></Button>
                         </div>
                     </div>
                 </div>
