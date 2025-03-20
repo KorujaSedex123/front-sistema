@@ -19,11 +19,11 @@ Este é o frontend de um sistema para agendamento de reuniões, desenvolvido com
 
 ### Passos para Configuração
 1. Clone o repositório:
-   bash
-   git clone https://github.com/KorujaSedex123/front-sistema.git
-   cd front-sistema
-   npm install
-   npm run dev
+2. bash
+3. git clone https://github.com/KorujaSedex123/front-sistema.git
+4. cd front-sistema
+5. npm install
+6. npm run dev
 
    
 🌐 Rotas do Frontend
