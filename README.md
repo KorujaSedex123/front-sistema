@@ -26,27 +26,6 @@ Este é o frontend de um sistema para agendamento de reuniões, desenvolvido com
    npm run dev
 
    
-  🧩 Estrutura do Projeto
-Aqui está a estrutura principal do projeto:
-rontend/
-├── public/ # Arquivos estáticos (imagens, fonts, etc.)
-├── src/
-│ ├── app/ # Páginas e componentes principais
-│ ├── demo/ # Exemplos ou demonstrações
-│ ├── layout/ # Componentes de layout (cabeçalho, rodapé, etc.)
-│ ├── service/ # Serviços para chamadas à API
-│ ├── styles/ # Estilos globais e módulos CSS
-│ ├── types/ # Tipos TypeScript (se aplicável)
-│ └── utils/ # Utilitários e helpers
-├── .env.local # Variáveis de ambiente locais
-├── .eslintrc.json # Configurações do ESLint
-├── .gitignore # Arquivos ignorados pelo Git
-├── next.config.js # Configurações do Next.js
-├── package.json # Dependências e scripts do projeto
-├── README.md # Documentação do projeto
-└── tsconfig.json # Configurações do TypeScript
-
-
 🌐 Rotas do Frontend
 /: Página inicial.
 
@@ -54,7 +33,6 @@ rontend/
 
 /auth/newuser: Página de cadastro de novo usuário.
 
-/dashboard: Área protegida para agendar e gerenciar reuniões.
 
 📝 Licença
 Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE.md para mais detalhes.
