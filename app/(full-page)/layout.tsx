@@ -8,16 +8,15 @@ interface SimpleLayoutProps {
 }
 
 export const metadata: Metadata = {
-    title: 'PrimeReact Sakai',
+    title: 'Korion Project',
     description: 'The ultimate collection of design-agnostic, flexible and accessible React UI Components.'
 };
 
 export default function SimpleLayout({ children }: SimpleLayoutProps) {
     return (
         <React.Fragment>
-            <AuthProvider> {/* Envolva os children com AuthProvider */}
+            <AuthProvider> 
                 {children}
-                <AppConfig simple />
             </AuthProvider>
         </React.Fragment>
     );

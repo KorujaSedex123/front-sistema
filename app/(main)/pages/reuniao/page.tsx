@@ -9,10 +9,11 @@ import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 import { Toolbar } from 'primereact/toolbar';
 import { classNames } from 'primereact/utils';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { use, useEffect, useMemo, useRef, useState } from 'react';
 import { Projeto } from '../../../../types/types';
 import { ReuniaoService } from '../../../../service/ReuniaoService';
 import moment from 'moment';
+import { ConfirmaReuniaoService } from '../../../../service/ConfirmaReuniaoService';
 
 const Reuniao = () => {
     let reuniaoVazio: Projeto.Reuniao = {
@@ -25,6 +26,7 @@ const Reuniao = () => {
     const [reuniaoDialog, setReuniaoDialog] = useState(false);
     const [deleteReuniaoDialog, setDeleteReuniaoDialog] = useState(false);
     const [deleteReunioesDialog, setDeleteReunioesDialog] = useState(false);
+    const [confirmaReuniaoDialog, setConfirmaReuniaoDialog] = useState(false);
     const [reuniao, setReuniao] = useState<Projeto.Reuniao>(reuniaoVazio);
     const [selectedReunioes, setSelectedReunioes] = useState<Projeto.Reuniao[]>([]);
     const [submitted, setSubmitted] = useState(false);
@@ -32,6 +34,7 @@ const Reuniao = () => {
     const toast = useRef<Toast>(null);
     const dt = useRef<DataTable<any>>(null);
     const reuniaoService = useMemo(() => new ReuniaoService(), []);
+    const confirmaReuniaoService = useMemo(() => new ConfirmaReuniaoService(), []);
 
     useEffect(() => {
         if (!reunioes) {
@@ -62,6 +65,10 @@ const Reuniao = () => {
 
     const hideDeleteReunioesDialog = () => {
         setDeleteReunioesDialog(false);
+    };
+
+    const hideConfirmaReuniaoDialog = () => {
+        setConfirmaReuniaoDialog(false);
     };
 
     const saveReuniao = () => {
@@ -147,6 +154,10 @@ const Reuniao = () => {
         setDeleteReunioesDialog(true);
     };
 
+    const confirmConfirmaReuniao = () => {
+        setConfirmaReuniaoDialog(true);
+    }
+
     const deleteSelectedReunioes = () => {
 
         Promise.all(selectedReunioes.map(async (_reuniao) => {
@@ -172,12 +183,33 @@ const Reuniao = () => {
             })
         });
     };
+    const confirmaReuniao = () => {
+        setSubmitted(true);
+
+            confirmaReuniaoService.inserir(reuniao)
+                .then((response) => {
+                    setReuniaoDialog(false);
+                    setReuniao(reuniaoVazio);
+                    setReunioes(null);
+                    toast.current?.show({
+                        severity: 'info',
+                        summary: 'Sucesso!',
+                        detail: 'Reunião marcada com sucesso!'
+                    });
+                }).catch((error) => {
+                    toast.current?.show({
+                        severity: 'error',
+                        summary: 'Erro!',
+                        detail: 'Erro ao salvar!' 
+                    })
+                });
+    }
+
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, name: string) => {
         const val = (e.target && e.target.value) || '';
         
 
-        //JEITO CERTO
         setReuniao(prevReuniao => ({
              ...prevReuniao,
              [name]: val,
@@ -189,7 +221,8 @@ const Reuniao = () => {
             <React.Fragment>
                 <div className="my-2">
                     <Button label="Novo" icon="pi pi-plus" severity="success" className=" mr-2" onClick={openNew} />
-                    <Button label="Excluir" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedReunioes || !(selectedReunioes as any).length} />
+                    <Button label="Excluir" icon="pi pi-trash" className=" mr-2" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedReunioes || !(selectedReunioes as any).length} />
+                    <Button label="Confirmar presença" icon="pi pi-check-square" severity="warning" onClick={confirmConfirmaReuniao} disabled={!selectedReunioes || selectedReunioes.length === 0 || selectedReunioes.length > 1} />
                 </div>
             </React.Fragment>
         );
@@ -269,6 +302,12 @@ const Reuniao = () => {
             <Button label="Sim" icon="pi pi-check" text onClick={deleteSelectedReunioes} />
         </>
     );
+    const confirmaReuniaoDialogFooter = (
+        <>
+            <Button label="Não" icon="pi pi-times" text onClick={hideConfirmaReuniaoDialog} />
+            <Button label="Sim" icon="pi pi-check" text onClick={confirmaReuniao} />
+        </>
+    )
 
     return (
         <div className="grid crud-demo">
@@ -350,6 +389,12 @@ const Reuniao = () => {
                         <div className="flex align-items-center justify-content-center">
                             <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                             {reuniao && <span>Você realmente deseja excluir as reuniões selecionadas?</span>}
+                        </div>
+                    </Dialog>
+                    <Dialog visible={confirmaReuniaoDialog} style={{ width: '450px' }} header="Confirmar" modal footer={confirmaReuniaoDialogFooter} onHide={hideConfirmaReuniaoDialog}>
+                        <div className="flex align-items-center justify-content-center">
+                            <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
+                            {reuniao && <span>Você realmente deseja confirmar a sua presença na reunião?</span>}
                         </div>
                     </Dialog>
                 </div>

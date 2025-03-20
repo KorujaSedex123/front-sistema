@@ -36,4 +36,9 @@ declare namespace Projeto {
         descricao: string;
         dataReuniao?: Date;	
     }
+    type ConfirmaReuniao = {
+        id?: number;
+        reuniao: Reuniao;
+        usuario: Usuario;
+    }
 }
